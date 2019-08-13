@@ -1,2 +1,2 @@
 # channel-14
-Intranet site based on Wordpress and MariaDB
+Intranet site based on Wordpress
