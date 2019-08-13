@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+
+  channel14-wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 443:80
+    environment:
+      WORDPRESS_DB_HOST: channel14-mysqldb 
+      WORDPRESS_DB_USER: channel14-user
+      WORDPRESS_DB_PASSWORD: <strong password> 
+      WORDPRESS_DB_NAME: channel14-db
+
+  channel14-mysqldb:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: channel14-db
+      MYSQL_USER: channel14-user
+      MYSQL_PASSWORD: <strong password> 
+      MYSQL_RANDOM_ROOT_PASSWORD: '<strong password>'
