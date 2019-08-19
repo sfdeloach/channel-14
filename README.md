@@ -1,6 +1,6 @@
 # channel-14
 
-Intranet site based on Wordpress
+A WordPress Intranet site running inside docker containers.
 
 ## Setup
 
@@ -14,11 +14,7 @@ volumes for persisent data:
 
 Edit the placeholder passwords in the `docker_compose.yml` file.
 
-Build the images:
-
-```bash
-  $ docker-compose --build --project-name channel-14
-```
+This project relies on community images. There are no local images to build.
 
 Start the containers and detach:
 
@@ -26,8 +22,32 @@ Start the containers and detach:
   $ docker-compose -d up
 ```
 
-### Wordpress
+Inspect the running containers:
+
+```bash
+  $ docker-compose ps
+```
+
+Shut the containers down:
+
+```bash
+  $ docker-compose down
+```
+
+### MySQL
+
+`channel14-mysqldb`
+
+> based on [mysql](https://hub.docker.com/_/mysql)
 
 ### MyPhpAdmin
 
-### MySQL
+`channel14-phpadmin`
+
+> based on [phpadmin/phpadmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin)
+
+### Wordpress
+
+`channel14-wordpress`
+
+> based on [wordpress](https://hub.docker.com/_/wordpress)
