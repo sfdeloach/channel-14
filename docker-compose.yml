@@ -34,7 +34,7 @@ services:
     image: wordpress:5.2.2
     restart: always
     volumes:
-      - ./wordpress-volume:/var/www/html/wp-content
+      - ./wordpress-volume:/var/www/html
     ports:
       - 80:80
       - 443:443

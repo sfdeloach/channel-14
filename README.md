@@ -19,7 +19,7 @@ This project relies on community images. There are no local images to build.
 Start the containers and detach:
 
 ```bash
-  $ docker-compose -d up
+  $ docker-compose up -d
 ```
 
 Inspect the running containers:
@@ -51,3 +51,8 @@ Shut the containers down:
 `channel14-wordpress`
 
 > based on [wordpress](https://hub.docker.com/_/wordpress)
+
+#### Plugins
+
+- All-In-One Intranet (Lever Technology LLC)
+- LoginPress (WPBrigage)
