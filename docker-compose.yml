@@ -3,21 +3,55 @@ version: '3.1'
 services:
 
   channel14-wordpress:
-    image: wordpress
+    depends_on:
+      - channel14-mysqldb
+    image: wordpress:5.2.2
+    restart: always
+    volumes:
+      - ./wordpress-volume:/var/www/html/wp-content
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      WORDPRESS_DB_HOST: channel14-mysqldb:3306 
+      WORDPRESS_DB_USER: channel14-user
+      WORDPRESS_DB_PASSWORD: p4ssw0rd! # must match MYSQL_PASSWORD, change for production
+      WORDPRESS_DB_NAME: channel14-db
+    networks:
+      - channel14-network
+
+  phpadmin:
+    depends_on:
+      - channel14-mysqldb
+    image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - 443:80
+      - 8080:80
     environment:
-      WORDPRESS_DB_HOST: channel14-mysqldb 
-      WORDPRESS_DB_USER: channel14-user
-      WORDPRESS_DB_PASSWORD: <strong password> 
-      WORDPRESS_DB_NAME: channel14-db
+      PMA_HOST: channel14-wordpress
+      MYSQL_ROOT_PASSWORD: root_p4ssw0rd! # change for production
+    networks:
+      - channel14-network
 
   channel14-mysqldb:
     image: mysql:5.7
     restart: always
+    volumes:
+      - ./mysql-volume:/var/lib/mysql
     environment:
       MYSQL_DATABASE: channel14-db
       MYSQL_USER: channel14-user
-      MYSQL_PASSWORD: <strong password> 
-      MYSQL_RANDOM_ROOT_PASSWORD: '<strong password>'
+      MYSQL_PASSWORD: p4ssw0rd! # must match WORDPRESS_DB_PASSWORD, change for production
+      MYSQL_RANDOM_ROOT_PASSWORD: 'root_p4ssw0rd!' # change for production
+    networks:
+      - channel14-network
+
+networks:
+
+  channel14-network:
+
+volumes:
+
+  wordpress-volume:
+
+  mysql-volume:
