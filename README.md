@@ -5,7 +5,7 @@ A WordPress Intranet site running inside docker containers.
 ## Setup
 
 Create two directories in the working project folder. Docker will map to these directories as
-volumes for persisent data:
+volumes for persistent data:
 
 ```bash
   $ mkdir wordpress-volume
